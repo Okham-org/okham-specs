@@ -1,75 +1,147 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/omp/0.1.0/schema.json",
-  "title": "OMP Response Schemas",
-  "description": "JSON Schema definitions for OKHAM MCP Profile (OMP) tool responses",
-  "version": "0.1.0",
-  "definitions": {
-    "metadata": {
-      "type": "object",
-      "required": ["omp_version", "timestamp"],
-      "properties": {
-        "omp_version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "OMP specification version"
-        },
-        "timestamp": {
-          "type": "string",
-          "format": "date-time",
-          "description": "ISO 8601 timestamp"
-        },
-        "path": {
-          "type": "string",
-          "description": "Authoritative source path"
-        },
-        "last_updated": {
-          "type": "string",
-          "format": "date-time",
-          "description": "Last modification timestamp"
-        },
-        "authoritative_source": {
-          "type": "string",
-          "format": "uri",
-          "description": "Authoritative source URI"
+  "title": "OKHAM MCP Profile (OMP)",
+  "description": "Protocol contract for OKHAM registry/discovery operations over MCP.",
+  "type": "object",
+  "required": ["tool", "input", "output"],
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Human-readable example description"
+    },
+    "tool": {
+      "type": "string",
+      "enum": [
+        "list_contracts",
+        "get_contract_doc",
+        "get_schema",
+        "get_example",
+        "search_docs",
+        "resolve_term",
+        "get_contract_map"
+      ]
+    },
+    "input": {
+      "type": "object"
+    },
+    "output": {
+      "type": "object"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "tool": { "const": "list_contracts" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/ListContractsRequest" },
+          "output": { "$ref": "#/$defs/ListContractsOutput" }
         }
       }
     },
-    "contract_info": {
-      "type": "object",
-      "required": ["acronym", "name", "version", "status", "category", "path"],
-      "properties": {
-        "acronym": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym (e.g., OTC, OEC)"
-        },
-        "name": {
-          "type": "string",
-          "description": "Full contract name"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Semantic version"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["DRAFT", "STABLE", "COMMUNITY-GOVERNED", "DEPRECATED"],
-          "description": "Contract lifecycle status"
-        },
-        "category": {
-          "type": "string",
-          "enum": ["core", "extension", "tooling", "supporting"],
-          "description": "Contract category"
-        },
-        "path": {
-          "type": "string",
-          "description": "Relative path to contract documentation"
+    {
+      "if": {
+        "properties": { "tool": { "const": "get_contract_doc" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/GetContractDocRequest" },
+          "output": { "$ref": "#/$defs/GetContractDocOutput" }
         }
       }
     },
-    "error_response": {
+    {
+      "if": {
+        "properties": { "tool": { "const": "get_schema" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/GetSchemaRequest" },
+          "output": { "$ref": "#/$defs/GetSchemaOutput" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "tool": { "const": "get_example" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/GetExampleRequest" },
+          "output": { "$ref": "#/$defs/GetExampleOutput" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "tool": { "const": "search_docs" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/SearchDocsRequest" },
+          "output": { "$ref": "#/$defs/SearchDocsOutput" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "tool": { "const": "resolve_term" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/ResolveTermRequest" },
+          "output": { "$ref": "#/$defs/ResolveTermOutput" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "tool": { "const": "get_contract_map" } },
+        "required": ["tool"]
+      },
+      "then": {
+        "properties": {
+          "input": { "$ref": "#/$defs/GetContractMapRequest" },
+          "output": { "$ref": "#/$defs/GetContractMapOutput" }
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "Semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "ContractAcronym": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,5}$"
+    },
+    "ContractStatus": {
+      "type": "string",
+      "enum": ["DRAFT", "STABLE", "COMMUNITY-GOVERNED", "DEPRECATED"]
+    },
+    "ContractCategory": {
+      "type": "string",
+      "enum": ["core", "extension", "tooling", "supporting"]
+    },
+    "DocumentType": {
+      "type": "string",
+      "enum": ["README", "SPECIFICATION", "SCHEMA", "EXAMPLES", "GOVERNANCE"]
+    },
+    "ContentFormat": {
+      "type": "string",
+      "enum": ["markdown", "json", "yaml", "html"]
+    },
+    "ErrorResponse": {
       "type": "object",
       "required": ["error"],
       "properties": {
@@ -79,320 +151,303 @@
           "properties": {
             "code": {
               "type": "string",
-              "enum": ["not_found", "invalid_params", "internal_error", "unsupported_version"],
-              "description": "Error code"
+              "enum": ["not_found", "invalid_params", "internal_error", "unsupported_version"]
             },
-            "message": {
-              "type": "string",
-              "description": "Human-readable error message"
-            }
-          }
+            "message": { "type": "string" }
+          },
+          "additionalProperties": true
         }
-      }
+      },
+      "additionalProperties": true
     },
-    "list_contracts_response": {
+    "CommonMetadata": {
+      "type": "object",
+      "required": ["omp_version", "timestamp"],
+      "properties": {
+        "omp_version": { "$ref": "#/$defs/Semver" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "path": { "type": "string" },
+        "last_updated": { "type": "string", "format": "date-time" },
+        "authoritative_source": { "type": "string", "format": "uri" },
+        "source": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "SchemaMetadata": {
+      "type": "object",
+      "required": ["schema_id", "last_updated"],
+      "properties": {
+        "schema_id": { "type": "string", "format": "uri" },
+        "last_updated": { "type": "string", "format": "date-time" },
+        "omp_version": { "$ref": "#/$defs/Semver" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": true
+    },
+    "SearchMetadata": {
+      "type": "object",
+      "required": ["query", "total_results", "timestamp"],
+      "properties": {
+        "query": { "type": "string" },
+        "total_results": { "type": "integer", "minimum": 0 },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "omp_version": { "$ref": "#/$defs/Semver" },
+        "path": { "type": "string" },
+        "last_updated": { "type": "string", "format": "date-time" },
+        "authoritative_source": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": true
+    },
+    "ContractInfo": {
+      "type": "object",
+      "required": ["acronym", "name", "version", "status", "category", "path"],
+      "properties": {
+        "acronym": { "$ref": "#/$defs/ContractAcronym" },
+        "name": { "type": "string" },
+        "version": { "$ref": "#/$defs/Semver" },
+        "status": { "$ref": "#/$defs/ContractStatus" },
+        "category": { "$ref": "#/$defs/ContractCategory" },
+        "path": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "ListContractsRequest": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ListContractsResponse": {
       "type": "object",
       "required": ["contracts", "metadata"],
       "properties": {
         "contracts": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/contract_info"
-          },
-          "description": "List of available contracts"
+          "items": { "$ref": "#/$defs/ContractInfo" }
         },
-        "metadata": {
-          "$ref": "#/definitions/metadata"
-        }
-      }
+        "metadata": { "$ref": "#/$defs/CommonMetadata" }
+      },
+      "additionalProperties": true
     },
-    "get_contract_doc_response": {
+    "ListContractsOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/ListContractsResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "GetContractDocRequest": {
+      "type": "object",
+      "required": ["contract", "document"],
+      "properties": {
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "document": { "$ref": "#/$defs/DocumentType" },
+        "version": { "$ref": "#/$defs/Semver" }
+      },
+      "additionalProperties": false
+    },
+    "GetContractDocResponse": {
       "type": "object",
       "required": ["contract", "document", "version", "status", "content", "format", "metadata"],
       "properties": {
-        "contract": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym"
-        },
-        "document": {
-          "type": "string",
-          "enum": ["README", "SPECIFICATION", "SCHEMA", "EXAMPLES", "GOVERNANCE"],
-          "description": "Document type"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Contract version"
-        },
-        "status": {
-          "type": "string",
-          "enum": ["DRAFT", "STABLE", "COMMUNITY-GOVERNED", "DEPRECATED"],
-          "description": "Contract status"
-        },
-        "content": {
-          "type": "string",
-          "description": "Document content"
-        },
-        "format": {
-          "type": "string",
-          "enum": ["markdown", "json", "yaml", "html"],
-          "description": "Content format"
-        },
-        "metadata": {
-          "$ref": "#/definitions/metadata"
-        }
-      }
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "document": { "$ref": "#/$defs/DocumentType" },
+        "version": { "$ref": "#/$defs/Semver" },
+        "status": { "$ref": "#/$defs/ContractStatus" },
+        "content": { "type": "string" },
+        "format": { "$ref": "#/$defs/ContentFormat" },
+        "metadata": { "$ref": "#/$defs/CommonMetadata" }
+      },
+      "additionalProperties": true
     },
-    "get_schema_response": {
+    "GetContractDocOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/GetContractDocResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "SchemaObject": {
+      "type": "object",
+      "required": ["$id", "$schema"],
+      "properties": {
+        "$id": { "type": "string", "format": "uri" },
+        "$schema": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": true
+    },
+    "GetSchemaRequest": {
+      "type": "object",
+      "required": ["contract"],
+      "properties": {
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "version": { "$ref": "#/$defs/Semver" }
+      },
+      "additionalProperties": false
+    },
+    "GetSchemaResponse": {
       "type": "object",
       "required": ["contract", "version", "schema", "metadata"],
       "properties": {
-        "contract": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Contract version"
-        },
-        "schema": {
-          "type": "object",
-          "required": ["$id", "$schema"],
-          "properties": {
-            "$id": {
-              "type": "string",
-              "format": "uri",
-              "description": "Schema identifier URI"
-            },
-            "$schema": {
-              "type": "string",
-              "format": "uri",
-              "description": "JSON Schema version"
-            }
-          },
-          "description": "JSON Schema object"
-        },
-        "metadata": {
-          "type": "object",
-          "required": ["schema_id", "last_updated"],
-          "properties": {
-            "schema_id": {
-              "type": "string",
-              "format": "uri",
-              "description": "Schema identifier URI"
-            },
-            "last_updated": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Last modification timestamp"
-            }
-          }
-        }
-      }
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "version": { "$ref": "#/$defs/Semver" },
+        "schema": { "$ref": "#/$defs/SchemaObject" },
+        "metadata": { "$ref": "#/$defs/SchemaMetadata" }
+      },
+      "additionalProperties": true
     },
-    "example_artifact": {
+    "GetSchemaOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/GetSchemaResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "ExampleArtifact": {
       "type": "object",
       "required": ["id", "title", "artifact", "validates_against"],
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Example identifier"
-        },
-        "title": {
-          "type": "string",
-          "description": "Example title"
-        },
-        "description": {
-          "type": "string",
-          "description": "Example description"
-        },
-        "artifact": {
-          "type": "object",
-          "description": "Example artifact (contract-specific structure)"
-        },
-        "validates_against": {
-          "type": "string",
-          "format": "uri",
-          "description": "Schema URI this example validates against"
-        }
-      }
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "artifact": { "type": "object", "additionalProperties": true },
+        "validates_against": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": true
     },
-    "get_example_response": {
+    "GetExampleRequest": {
+      "type": "object",
+      "required": ["contract"],
+      "properties": {
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "example_id": { "type": "string" },
+        "version": { "$ref": "#/$defs/Semver" }
+      },
+      "additionalProperties": false
+    },
+    "GetExampleResponse": {
       "type": "object",
       "required": ["contract", "version", "examples", "metadata"],
       "properties": {
-        "contract": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Contract version"
-        },
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "version": { "$ref": "#/$defs/Semver" },
         "examples": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/example_artifact"
-          },
-          "description": "List of examples"
+          "items": { "$ref": "#/$defs/ExampleArtifact" }
         },
-        "metadata": {
-          "$ref": "#/definitions/metadata"
-        }
-      }
+        "metadata": { "$ref": "#/$defs/CommonMetadata" }
+      },
+      "additionalProperties": true
     },
-    "search_result": {
+    "GetExampleOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/GetExampleResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "SearchDocsRequest": {
+      "type": "object",
+      "required": ["query"],
+      "properties": {
+        "query": { "type": "string" },
+        "contracts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ContractAcronym" }
+        },
+        "document_types": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/DocumentType" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "SearchResult": {
       "type": "object",
       "required": ["contract", "document", "version", "excerpt", "relevance_score", "path"],
       "properties": {
-        "contract": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym"
-        },
-        "document": {
-          "type": "string",
-          "description": "Document type"
-        },
-        "version": {
-          "type": "string",
-          "pattern": "^\\d+\\.\\d+\\.\\d+$",
-          "description": "Contract version"
-        },
-        "excerpt": {
-          "type": "string",
-          "description": "Excerpt with context around match"
-        },
-        "relevance_score": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Relevance score (0-1)"
-        },
-        "path": {
-          "type": "string",
-          "description": "Path to matched content"
-        }
-      }
+        "contract": { "$ref": "#/$defs/ContractAcronym" },
+        "document": { "$ref": "#/$defs/DocumentType" },
+        "version": { "$ref": "#/$defs/Semver" },
+        "excerpt": { "type": "string" },
+        "relevance_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "path": { "type": "string" }
+      },
+      "additionalProperties": true
     },
-    "search_docs_response": {
+    "SearchDocsResponse": {
       "type": "object",
       "required": ["results", "metadata"],
       "properties": {
         "results": {
           "type": "array",
-          "items": {
-            "$ref": "#/definitions/search_result"
-          },
-          "description": "Search results ordered by relevance"
+          "items": { "$ref": "#/$defs/SearchResult" }
         },
-        "metadata": {
-          "type": "object",
-          "required": ["query", "total_results", "timestamp"],
-          "properties": {
-            "query": {
-              "type": "string",
-              "description": "Original search query"
-            },
-            "total_results": {
-              "type": "integer",
-              "minimum": 0,
-              "description": "Total number of results"
-            },
-            "timestamp": {
-              "type": "string",
-              "format": "date-time",
-              "description": "Search timestamp"
-            }
-          }
-        }
-      }
+        "metadata": { "$ref": "#/$defs/SearchMetadata" }
+      },
+      "additionalProperties": true
     },
-    "resolve_term_response": {
+    "SearchDocsOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/SearchDocsResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "ResolveTermRequest": {
+      "type": "object",
+      "required": ["term"],
+      "properties": {
+        "term": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "ResolveTermResponse": {
       "type": "object",
       "required": ["term", "definition", "metadata"],
       "properties": {
-        "term": {
-          "type": "string",
-          "description": "Term being resolved"
-        },
-        "definition": {
-          "type": "string",
-          "description": "Authoritative definition"
-        },
+        "term": { "type": "string" },
+        "definition": { "type": "string" },
         "related_contracts": {
           "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[A-Z]{2,5}$"
-          },
-          "description": "Contracts where term is normatively defined"
+          "items": { "$ref": "#/$defs/ContractAcronym" }
         },
         "aliases": {
           "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Alternative names for the term"
+          "items": { "type": "string" }
         },
-        "metadata": {
-          "$ref": "#/definitions/metadata"
-        }
-      }
+        "metadata": { "$ref": "#/$defs/CommonMetadata" }
+      },
+      "additionalProperties": true
     },
-    "contract_map_entry": {
+    "ResolveTermOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/ResolveTermResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
+    },
+    "GetContractMapRequest": {
+      "type": "object",
+      "additionalProperties": false
+    },
+    "ContractMapEntry": {
       "type": "object",
       "required": ["acronym", "owns", "does_not_own", "depends_on"],
       "properties": {
-        "acronym": {
-          "type": "string",
-          "pattern": "^[A-Z]{2,5}$",
-          "description": "Contract acronym"
-        },
-        "owns": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Responsibilities owned by this contract"
-        },
-        "does_not_own": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Responsibilities explicitly NOT owned"
-        },
-        "depends_on": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "^[A-Z]{2,5}$"
-          },
-          "description": "Contracts this contract depends on"
-        }
-      }
+        "acronym": { "$ref": "#/$defs/ContractAcronym" },
+        "owns": { "type": "array", "items": { "type": "string" } },
+        "does_not_own": { "type": "array", "items": { "type": "string" } },
+        "depends_on": { "type": "array", "items": { "$ref": "#/$defs/ContractAcronym" } }
+      },
+      "additionalProperties": true
     },
-    "get_contract_map_response": {
+    "GetContractMapResponse": {
       "type": "object",
       "required": ["contracts", "metadata"],
       "properties": {
-        "contracts": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/contract_map_entry"
-          },
-          "description": "Contract responsibility map"
-        },
-        "metadata": {
-          "$ref": "#/definitions/metadata"
-        }
-      }
+        "contracts": { "type": "array", "items": { "$ref": "#/$defs/ContractMapEntry" } },
+        "metadata": { "$ref": "#/$defs/CommonMetadata" }
+      },
+      "additionalProperties": true
+    },
+    "GetContractMapOutput": {
+      "oneOf": [
+        { "$ref": "#/$defs/GetContractMapResponse" },
+        { "$ref": "#/$defs/ErrorResponse" }
+      ]
     }
   }
 }
