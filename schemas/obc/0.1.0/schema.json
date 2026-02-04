@@ -1,7 +1,190 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/obc/0.1.0/schema.json",
-  "title": "Open Business Contract (OBC)",
+  "title": "OBC Flow Definition",
+  "description": "DRAFT v0.1.0 schema for Open Business Contract (OBC).",
   "type": "object",
-  "additionalProperties": true
+  "required": ["id", "name", "description", "steps"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique flow identifier.",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable flow name.",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string",
+      "description": "Purpose description.",
+      "minLength": 1
+    },
+    "steps": {
+      "type": "array",
+      "description": "Flow steps.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/step" }
+    },
+    "version": {
+      "type": "string",
+      "description": "Flow version (semver).",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Typed input parameters (OTC references).",
+      "items": { "$ref": "#/$defs/parameter" }
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Typed output values (OTC references).",
+      "items": { "$ref": "#/$defs/parameter" }
+    },
+    "state": {
+      "type": "object",
+      "description": "Business state tracked during execution.",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "OTC type reference for state structure.",
+          "pattern": "^[a-z][a-z0-9-_]*\\.[a-z][a-z0-9-_]*\\.[a-z][a-z0-9-_]*$"
+        },
+        "initial": {
+          "type": "object",
+          "description": "Initial state values.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "policies": {
+      "type": "array",
+      "description": "Governance policies (OPC references).",
+      "items": { "type": "string" }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "parameter": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Parameter name.",
+          "pattern": "^[a-z][a-zA-Z0-9]*$"
+        },
+        "type": {
+          "type": "string",
+          "description": "OTC type reference.",
+          "pattern": "^[a-z][a-z0-9-_]*\\.[a-z][a-z0-9-_]*\\.[a-z][a-z0-9-_]*$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Parameter description."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Whether parameter is required.",
+          "default": true
+        },
+        "default": {
+          "description": "Default value if not provided."
+        }
+      },
+      "additionalProperties": false
+    },
+    "step": {
+      "type": "object",
+      "required": ["id", "type", "description"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique step identifier within flow.",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "type": {
+          "type": "string",
+          "description": "Step type.",
+          "enum": ["action", "decision", "subflow", "event"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Step purpose.",
+          "minLength": 1
+        },
+        "transitions": {
+          "type": "array",
+          "description": "Conditions for moving to next steps.",
+          "items": { "$ref": "#/$defs/transition" }
+        },
+        "inputs": {
+          "type": "object",
+          "description": "Step input mapping.",
+          "additionalProperties": true
+        },
+        "outputs": {
+          "type": "object",
+          "description": "Step output mapping.",
+          "additionalProperties": true
+        },
+        "events": {
+          "type": "array",
+          "description": "Events emitted by this step (OEC references).",
+          "items": { "type": "string" }
+        },
+        "policies": {
+          "type": "array",
+          "description": "Policies applied to this step (OPC references).",
+          "items": { "type": "string" }
+        },
+        "timeout": {
+          "type": "string",
+          "description": "Maximum step duration (ISO 8601 duration).",
+          "pattern": "^P(?:\\d+Y)?(?:\\d+M)?(?:\\d+D)?(?:T(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+        },
+        "retry": {
+          "type": "object",
+          "description": "Retry configuration.",
+          "properties": {
+            "maxAttempts": {
+              "type": "integer",
+              "description": "Maximum retry attempts.",
+              "minimum": 1
+            },
+            "backoff": {
+              "type": "string",
+              "description": "Backoff strategy.",
+              "enum": ["fixed", "exponential", "linear"]
+            },
+            "delay": {
+              "type": "string",
+              "description": "Initial delay (ISO 8601 duration).",
+              "pattern": "^P(?:\\d+Y)?(?:\\d+M)?(?:\\d+D)?(?:T(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:\\.\\d+)?S)?)?$"
+            }
+          },
+          "additionalProperties": true
+        },
+        "action": {
+          "type": "object",
+          "description": "Action-specific configuration (for action steps).",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "transition": {
+      "type": "object",
+      "description": "Transition condition definition.",
+      "additionalProperties": true
+    }
+  }
 }

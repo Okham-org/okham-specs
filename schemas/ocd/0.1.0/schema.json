@@ -2,6 +2,23 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/ocd/0.1.0/schema.json",
   "title": "Open Contract Document (OCD)",
+  "description": "Permissive schema for OCD metadata payloads; OCD primarily defines document structure in Markdown.",
   "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Document version (semver)",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Document identifier"
+    },
+    "data": {
+      "type": "object",
+      "description": "Document payload",
+      "additionalProperties": true
+    }
+  },
   "additionalProperties": true
 }

@@ -1,13 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/ovr/0.1.0/schema.json",
-  "title": "Open Validation Report (OVR)",
+  "title": "OVR Report Definition",
+  "description": "DRAFT v0.0.1 schema for Open Validation Report (OVR).",
   "type": "object",
   "required": ["ovr", "run", "summary", "issues"],
   "properties": {
     "ovr": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OVR version string (SemVer)."
     },
     "run": {
       "type": "object",

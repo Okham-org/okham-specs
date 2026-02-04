@@ -1,36 +1,36 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/oec/0.1.0/schema.json",
-  "title": "Open Event Contract (OEC)",
-  "description": "Schema for OKHAM Open Event Contract v0.1.0",
+  "title": "OEC Event Definition",
+  "description": "DRAFT v0.0.1 schema for Open Event Contract (OEC).",
   "type": "object",
   "required": ["event", "id", "name", "version", "status", "source", "timestamp", "payload"],
   "properties": {
     "event": {
       "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-      "description": "OEC version (semantic version)"
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OEC version (semantic version)."
     },
     "id": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9._-]*[a-z0-9]$",
-      "description": "Event identifier (unique, namespaced, lowercase with dot separators)"
+      "description": "Event identifier (unique, namespaced)."
     },
     "name": {
       "type": "string",
       "minLength": 2,
       "maxLength": 100,
-      "description": "Human-readable event name (past tense)"
+      "description": "Human-readable event name (past tense)."
     },
     "version": {
       "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-      "description": "Event schema version (semantic version)"
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Event schema version."
     },
     "status": {
       "type": "string",
       "enum": ["draft", "stable", "deprecated", "removed"],
-      "description": "Event lifecycle status"
+      "description": "Lifecycle status."
     },
     "source": {
       "type": "object",
@@ -38,73 +38,48 @@
       "properties": {
         "capability": {
           "type": "string",
-          "description": "OCC capability ID that emitted the event"
+          "description": "OCC capability ID that emitted the event."
         },
         "instance": {
           "type": "string",
-          "description": "Instance ID of the emitting capability"
+          "description": "Instance ID of the emitting capability."
         },
         "version": {
           "type": "string",
-          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
-          "description": "Version of the emitting capability"
+          "description": "Version of the emitting capability (semver)."
         }
       },
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "timestamp": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 timestamp (UTC) when the event occurred"
+      "description": "Event occurrence time (ISO 8601, UTC)."
     },
     "causality": {
       "type": "object",
       "properties": {
-        "correlation_id": {
-          "type": "string",
-          "description": "Trace ID for related events across services"
-        },
-        "causation_id": {
-          "type": "string",
-          "description": "ID of the event/command that caused this event"
-        },
-        "trace_id": {
-          "type": "string",
-          "description": "Distributed tracing identifier"
-        },
-        "span_id": {
-          "type": "string",
-          "description": "Tracing span identifier"
-        }
+        "correlation_id": { "type": "string" },
+        "causation_id": { "type": "string" },
+        "trace_id": { "type": "string" },
+        "span_id": { "type": "string" }
       },
       "additionalProperties": true
     },
     "classification": {
       "type": "object",
       "properties": {
-        "domain": {
-          "type": "string",
-          "pattern": "^[a-z][a-z0-9._-]*[a-z0-9]$",
-          "description": "Event domain (dot-separated hierarchy)"
-        },
-        "lifecycle": {
-          "type": "string",
-          "description": "Lifecycle phase (e.g., created, updated, deleted)"
-        },
+        "domain": { "type": "string" },
+        "lifecycle": { "type": "string" },
         "severity": {
           "type": "string",
-          "enum": ["debug", "info", "warn", "error", "critical"],
-          "description": "Event severity level"
+          "enum": ["debug", "info", "warn", "error", "critical"]
         },
         "scope": {
           "type": "string",
-          "enum": ["public", "internal", "private"],
-          "description": "Event visibility scope"
+          "enum": ["public", "internal", "private"]
         },
-        "category": {
-          "type": "string",
-          "description": "OSC semantic category"
-        }
+        "category": { "type": "string" }
       },
       "additionalProperties": true
     },
@@ -114,21 +89,20 @@
       "properties": {
         "type": {
           "type": "string",
-          "format": "uri",
-          "description": "OTC type URL or reference (versioned)"
+          "description": "OTC type URL or reference (versioned)."
         },
         "data": {
           "type": "object",
-          "description": "Actual event data (must conform to type)"
+          "description": "Event data (must conform to type).",
+          "additionalProperties": true
         }
       },
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "metadata": {
       "type": "object",
-      "description": "Additional custom metadata (free-form key-value pairs)",
       "additionalProperties": true
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }

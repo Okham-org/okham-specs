@@ -1,7 +1,122 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://okham.org/schemas/oac/0.1.0/schema.json",
-  "title": "Open Accessibility Contract (OAC)",
+  "title": "OAC Accessibility Definition",
+  "description": "DRAFT v0.1.0 schema for Open Accessibility Contract (OAC).",
   "type": "object",
-  "additionalProperties": true
+  "required": ["id", "target", "standard", "requirements"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique obligation identifier.",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "target": {
+      "type": "string",
+      "description": "Component or interaction identifier.",
+      "minLength": 1
+    },
+    "standard": {
+      "type": "string",
+      "description": "Accessibility standard reference."
+    },
+    "requirements": {
+      "type": "array",
+      "description": "Specific accessibility criteria.",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/requirement" }
+    },
+    "priority": {
+      "type": "string",
+      "description": "Severity level.",
+      "enum": ["critical", "high", "medium", "low"],
+      "default": "medium"
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Evidence requirements for verification.",
+      "items": { "$ref": "#/$defs/evidenceRequirement" }
+    },
+    "exemptions": {
+      "type": "array",
+      "description": "Documented exemptions with justification.",
+      "items": { "$ref": "#/$defs/exemption" }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "requirement": {
+      "type": "object",
+      "required": ["criterion", "description"],
+      "properties": {
+        "criterion": {
+          "type": "string",
+          "description": "Specific accessibility criterion identifier."
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable requirement description.",
+          "minLength": 1
+        },
+        "level": {
+          "type": "string",
+          "description": "Conformance level.",
+          "enum": ["A", "AA", "AAA"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidenceRequirement": {
+      "type": "object",
+      "required": ["type", "check"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Evidence type.",
+          "enum": ["automated", "manual", "documentation"]
+        },
+        "check": {
+          "type": "string",
+          "description": "Specific verification to perform.",
+          "minLength": 1
+        },
+        "frequency": {
+          "type": "string",
+          "description": "How often verification should occur.",
+          "enum": ["on-change", "daily", "weekly", "monthly", "on-demand"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "exemption": {
+      "type": "object",
+      "required": ["criterion", "justification"],
+      "properties": {
+        "criterion": {
+          "type": "string",
+          "description": "Exempted criterion identifier."
+        },
+        "justification": {
+          "type": "string",
+          "description": "Reason for exemption.",
+          "minLength": 1
+        },
+        "approvedBy": {
+          "type": "string",
+          "description": "Authority who approved exemption."
+        },
+        "expiresAt": {
+          "type": "string",
+          "description": "Exemption expiration date (ISO 8601).",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }
