@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://okham.org/schema/opc/0.1.0/schema.json",
+  "$id": "https://okham.org/schemas/opc/0.1.0/schema.json",
   "title": "Open Policy Contract (OPC)",
   "description": "Schema for OKHAM Open Policy Contract v0.1.0",
   "type": "object",

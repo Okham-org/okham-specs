@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://okham.org/schema/omp/0.1.0/responses.schema.json",
+  "$id": "https://okham.org/schemas/omp/0.1.0/schema.json",
   "title": "OMP Response Schemas",
   "description": "JSON Schema definitions for OKHAM MCP Profile (OMP) tool responses",
   "version": "0.1.0",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://okham.org/schema/oec/0.1.0/schema.json",
+  "$id": "https://okham.org/schemas/oec/0.1.0/schema.json",
   "title": "Open Event Contract (OEC)",
   "description": "Schema for OKHAM Open Event Contract v0.1.0",
   "type": "object",

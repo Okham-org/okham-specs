@@ -1,0 +1,38 @@
+[
+  {
+    "id": "oec",
+    "group": "core",
+    "versions": ["0.1.0"],
+    "status": "draft"
+  },
+  {
+    "id": "opc",
+    "group": "core",
+    "versions": ["0.1.0"],
+    "status": "draft"
+  },
+  {
+    "id": "oucc",
+    "group": "core",
+    "versions": ["v1"],
+    "status": "draft"
+  },
+  {
+    "id": "omp",
+    "group": "supporting",
+    "versions": ["0.1.0"],
+    "status": "draft"
+  },
+  {
+    "id": "occ",
+    "group": "tooling",
+    "versions": ["v1"],
+    "status": "draft"
+  },
+  {
+    "id": "ovr",
+    "group": "tooling",
+    "versions": ["0.1.0"],
+    "status": "draft"
+  }
+]
