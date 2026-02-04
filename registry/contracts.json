@@ -1,0 +1,84 @@
+{
+  "contracts": [
+    {
+      "id": "oac",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "obc",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "ocd",
+      "versions": ["1.0.0"],
+      "status": "draft"
+    },
+    {
+      "id": "occ",
+      "versions": ["0.1.0", "v1"],
+      "status": "draft"
+    },
+    {
+      "id": "odt",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "oec",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "ofr",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "oic",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "omp",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "onc",
+      "versions": ["0.2.0"],
+      "status": "draft"
+    },
+    {
+      "id": "opc",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "oprc",
+      "versions": ["0.0.1"],
+      "status": "draft"
+    },
+    {
+      "id": "osr",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    },
+    {
+      "id": "otc",
+      "versions": ["0.1.0", "0.2.0"],
+      "status": "draft"
+    },
+    {
+      "id": "oucc",
+      "versions": ["v1"],
+      "status": "draft"
+    },
+    {
+      "id": "ovr",
+      "versions": ["0.1.0"],
+      "status": "draft"
+    }
+  ]
+}
