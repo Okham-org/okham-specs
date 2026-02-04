@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/ovr-olr/0.1.0/ruleset.schema.json",
+  "title": "OVR/OLR Ruleset Definition",
+  "description": "DRAFT v0.0.1 placeholder schema. TODO: ruleset structure is not defined in SCHEMA.md or SPECIFICATION.md.",
+  "type": "object",
+  "additionalProperties": true
+}

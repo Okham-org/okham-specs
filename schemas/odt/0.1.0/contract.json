@@ -1,0 +1,7 @@
+{
+  "contract": "odt",
+  "version": "0.1.0",
+  "status": "draft",
+  "schema": "./schema.json",
+  "spec": "../../../specs/odt/0.1.0/spec.md"
+}

@@ -1,8 +1,9 @@
-# Open Event Contract (OEC) — Specification
-
-**Version**: 0.1.0
-**Status**: DRAFT
-**Last Updated**: 2026-01-16
+# OKHAM OEC — Open Event Contract
+- Contract: OEC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/oec/0.1.0/schema.json
+- Last Updated: 2026-01-16
 
 ---
 

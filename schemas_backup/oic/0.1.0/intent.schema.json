@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oic/0.1.0/intent.schema.json",
+  "title": "OIC Intent Definition",
+  "description": "DRAFT v0.0.1 schema for Open Intent Contract (OIC).",
+  "type": "object",
+  "required": ["oic", "id", "intent", "purpose"],
+  "properties": {
+    "oic": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OIC version (semver)."
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique intent declaration identifier."
+    },
+    "intent": {
+      "type": "string",
+      "description": "Intent token from the OIC registry."
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Human-readable purpose statement."
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Declarative constraints.",
+      "additionalProperties": true
+    },
+    "expectations": {
+      "type": "object",
+      "description": "Expected outcomes.",
+      "additionalProperties": true
+    },
+    "transitions": {
+      "type": "array",
+      "description": "Allowed next intent transitions.",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": true
+}

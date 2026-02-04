@@ -1,7 +1,8 @@
-# OCC — Open Capability Contract
-
-## Version 0.1.0
-## Status: DRAFT
+# OKHAM OCC — Open Capability Contract
+- Contract: OCC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/occ/0.1.0/schema.json
 
 Open Capability Contract (OCC) defines the declarative YAML format for defining
 capabilities in the OKHAM ecosystem. This specification was previously referred

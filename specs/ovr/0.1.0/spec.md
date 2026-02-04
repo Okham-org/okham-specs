@@ -1,8 +1,9 @@
-# Open Validation Report (OVR) Specification
-
-**Version**: 0.1.0  
-**Status**: DRAFT  
-**Last Updated**: 2026-01-17
+# OKHAM OVR — Open Validation Report
+- Contract: OVR
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/ovr/0.1.0/schema.json
+- Last Updated: 2026-01-17
 
 ---
 

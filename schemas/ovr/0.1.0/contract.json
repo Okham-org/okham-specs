@@ -2,5 +2,9 @@
   "contract": "ovr",
   "version": "0.1.0",
   "status": "draft",
-  "schema": "./schema.json"
+  "schema": "./schema.json",
+  "spec": "../../../specs/ovr/0.1.0/spec.md",
+  "examples": [
+    "../../../examples/ovr/0.1.0/valid-report.json"
+  ]
 }

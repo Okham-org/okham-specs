@@ -1,0 +1,7 @@
+{
+  "contract": "oic",
+  "version": "0.1.0",
+  "status": "draft",
+  "schema": "./schema.json",
+  "spec": "../../../specs/oic/0.1.0/spec.md"
+}

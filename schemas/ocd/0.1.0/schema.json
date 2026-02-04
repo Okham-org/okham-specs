@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/ocd/0.1.0/schema.json",
+  "title": "Open Contract Document (OCD)",
+  "type": "object",
+  "additionalProperties": true
+}

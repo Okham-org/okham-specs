@@ -8,11 +8,11 @@
     "stable": null
   },
   "ocd": {
-    "latest": "1.0.0",
+    "latest": "0.1.0",
     "stable": null
   },
   "occ": {
-    "latest": "v1",
+    "latest": "0.1.0",
     "stable": null
   },
   "odt": {
@@ -36,7 +36,7 @@
     "stable": null
   },
   "onc": {
-    "latest": "0.2.0",
+    "latest": "0.1.0",
     "stable": null
   },
   "opc": {
@@ -44,7 +44,7 @@
     "stable": null
   },
   "oprc": {
-    "latest": "0.0.1",
+    "latest": "0.1.0",
     "stable": null
   },
   "osr": {
@@ -52,11 +52,11 @@
     "stable": null
   },
   "otc": {
-    "latest": "0.2.0",
+    "latest": "0.1.0",
     "stable": null
   },
   "oucc": {
-    "latest": "v1",
+    "latest": "0.1.0",
     "stable": null
   },
   "ovr": {

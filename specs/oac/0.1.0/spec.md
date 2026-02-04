@@ -1,8 +1,9 @@
-# Open Accessibility Contract (OAC) Specification
-
-## Version 0.1.0
-## Status: DRAFT
-## Last Updated: 2026-01-17
+# OKHAM OAC — Open Accessibility Contract
+- Contract: OAC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/oac/0.1.0/schema.json
+- Last Updated: 2026-01-17
 
 ---
 

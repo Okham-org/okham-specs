@@ -1,48 +1,100 @@
-# Tooling & Ecosystem Overview
+# OKHAM Specifications
 
-OKHAM standards define the "what" (meaning), but to bring that meaning into production, a robust ecosystem of tooling is required. The OKHAM tooling standards ensure that registries, validators, and development tools are as portable and neutral as the contracts they support.
+This repository is the **authoritative source of truth** for the OKHAM open standards.
 
-## Why Tooling Standards Matter
+It contains the **normative specifications**, **canonical JSON Schemas**, and **reference examples**
+that define how OKHAM contracts are structured and validated.
 
-In a distributed, AI-native system, having explicit contracts is only half the battle. You also need to:
-- **Discover** capabilities without manual integration.
-- **Validate** that implementations actually follow the contracts.
-- **Reuse** patterns, visual tokens, and functions across different teams and languages.
-- **Govern** the evolution of these artifacts with automated quality gates.
-
-By standardizing the *format* of these tools and registries, OKHAM prevents "tooling lock-in" and ensures that your ecosystem remains maintainable and version-controlled.
-
-## The Tooling Ecosystem
-
-The OKHAM ecosystem consists of several specialized standards that work together to provide a seamless development and runtime experience:
-
-### 1. Discovery & Packaging (OCC)
-The **Open Capability Contract (OCC)** defines how a capability identifies itself, what resources it needs, and what interfaces it exposes. It is the "manifest" that allows registries to catalog capabilities and runtimes to host them.
-
-### 2. Meta-Standard (OCD)
-The **Open Contract Document (OCD)** ensures that all OKHAM standards follow a consistent structure. It separates normative requirements from implementation profiles, making it easier for both humans and tools to parse and implement the standards.
-
-### 3. Verification & Quality (OVR / OLR)
-The **Open Validation Report (OVR)** and **Open Linting Ruleset (OLR)** provide interoperable formats for system verification. They ensure that whether you are using a Go-based linter or a Python-based validator, the results are portable and can be consumed by the same CI/CD pipelines.
-
-### 4. Shared Registries
-- **ODT (Design Tokens)**: Standardizes visual decisions (colors, typography) so they can be consumed by any rendering engine.
-- **OSR (Snippet Registry)**: Enables sharing of reusable code patterns and UI fragments.
-- **OFR (Function Registry)**: Provides a declarative way to catalog executable operations independent of language.
-
-## Practical Benefits
-
-- **Reuse**: Shared registries (ODT, OSR, OFR) significantly reduce "reinventing the wheel" by making high-quality, curated artifacts available across the organization.
-- **Cost Reduction**: Automated validation (OVR/OLR) catches semantic errors early in the development cycle, reducing the cost of debugging complex AI integrations.
-- **Maintainability**: Versioned contracts and registries ensure that updates are traceable and breaking changes are detected automatically.
-- **Integration Reliability**: Explicit capability manifests (OCC) make system composition deterministic rather than exploratory.
+Human-facing documentation is published at **https://okham.org**.
+This repository is focused on **precision, stability, and machine consumption**.
 
 ---
 
-## Using the Tools
+## Repository scope
 
-While this site defines the *standards* for tooling, the actual implementations (linters, validators, and registry servers) live at **[okham.io](https://okham.io)**.
+This repository defines:
 
-- [Explore OKHAM Tools & Utilities](https://okham.io/doc/tooling/README.md)
-- [Browse Reference Registries](https://okham.io/doc/registries/README.md)
-- [Access APIs & SDKs](https://okham.io/doc/api/README.md)
+- Normative specifications (`/specs`)
+- Canonical JSON Schemas (`/schemas`)
+- Reference examples (`/examples`)
+- Contract registry metadata (`/registry`)
+
+This repository does **not** contain:
+
+- Implementations
+- Tooling
+- Runtimes
+- UI components
+- Deployment artifacts
+
+Those live in separate repositories and products (e.g. okham.io).
+
+---
+
+## Canonical URLs
+
+All schemas published in this repository are served under canonical URLs of the form:
+
+```
+https://okham.org/schemas/<contract>/<version>/schema.json
+```
+
+These URLs are considered **stable identifiers** for validation and tooling.
+
+GitHub is used for contribution and version control.
+The public OKHAM domain is the canonical distribution point.
+
+---
+
+## Repository structure
+
+```
+schemas/<contract>/<version>/schema.json
+schemas/<contract>/<version>/contract.json
+specs/<contract>/<version>/spec.md
+examples/<contract>/<version>/*
+registry/contracts.json
+registry/latest.json
+```
+
+- `schemas/` are machine-consumable and normative
+- `specs/` are human-readable and normative
+- `examples/` are informative
+- `registry/` provides discovery metadata
+
+---
+
+## Versioning and status
+
+Each contract version declares a status:
+
+- `draft`: subject to change
+- `stable`: backward-compatible evolution only
+- `deprecated`: retained for compatibility, not recommended
+
+The latest and stable versions of each contract are declared in:
+
+- `registry/latest.json`
+
+---
+
+## Contribution model
+
+This repository follows a **spec-first, contract-driven** model.
+
+Changes to specifications or schemas:
+
+- MUST be made via pull requests
+- SHOULD include updated examples
+- MUST preserve backward compatibility unless a new major version is introduced
+
+Breaking changes are only allowed in:
+
+- new major versions
+- contracts explicitly marked as `draft`
+
+---
+
+## License
+
+See `LICENSE`.

@@ -12,12 +12,12 @@
     },
     {
       "id": "ocd",
-      "versions": ["1.0.0"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {
       "id": "occ",
-      "versions": ["0.1.0", "v1"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {
@@ -47,7 +47,7 @@
     },
     {
       "id": "onc",
-      "versions": ["0.2.0"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "id": "oprc",
-      "versions": ["0.0.1"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {
@@ -67,12 +67,12 @@
     },
     {
       "id": "otc",
-      "versions": ["0.1.0", "0.2.0"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {
       "id": "oucc",
-      "versions": ["v1"],
+      "versions": ["0.1.0"],
       "status": "draft"
     },
     {

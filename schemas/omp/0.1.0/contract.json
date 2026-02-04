@@ -2,5 +2,16 @@
   "contract": "omp",
   "version": "0.1.0",
   "status": "draft",
-  "schema": "./schema.json"
+  "schema": "./schema.json",
+  "spec": "../../../specs/omp/0.1.0/spec.md",
+  "examples": [
+    "../../../examples/omp/0.1.0/error_not_found.json",
+    "../../../examples/omp/0.1.0/get_contract_doc.json",
+    "../../../examples/omp/0.1.0/get_contract_map.json",
+    "../../../examples/omp/0.1.0/get_example.json",
+    "../../../examples/omp/0.1.0/get_schema.json",
+    "../../../examples/omp/0.1.0/list_contracts.json",
+    "../../../examples/omp/0.1.0/resolve_term.json",
+    "../../../examples/omp/0.1.0/search_docs.json"
+  ]
 }

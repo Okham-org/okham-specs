@@ -1,8 +1,9 @@
-# Open Business Contract (OBC) Specification
-
-## Version 0.1.0
-## Status: DRAFT
-## Last Updated: 2026-01-17
+# OKHAM OBC — Open Business Contract
+- Contract: OBC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/obc/0.1.0/schema.json
+- Last Updated: 2026-01-17
 
 ---
 

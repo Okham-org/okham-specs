@@ -1,8 +1,9 @@
-# OSR — Open Snippet Registry Specification
-
-**Version**: 0.1.0  
-**Status**: DRAFT  
-**Last Updated**: 2026-01-17
+# OKHAM OSR — Open Snippet Registry
+- Contract: OSR
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/osr/0.1.0/schema.json
+- Last Updated: 2026-01-17
 
 ---
 

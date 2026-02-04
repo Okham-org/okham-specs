@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oucc/0.1.0/schema.json",
+  "title": "OKHAM UI Component Contract (OUCC)",
+  "description": "Schema for OKHAM UI component manifests with rendering profiles and artifact references",
+  "type": "object",
+  "required": ["component", "id", "name", "version"],
+  "properties": {
+    "component": {
+      "type": "string",
+      "description": "OUCC schema version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0"]
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique component identifier (namespace_component-name format)",
+      "pattern": "^[a-z][a-z0-9_-]*$",
+      "minLength": 3,
+      "maxLength": 100,
+      "examples": ["okham_ui_card", "okham_ui_hero"]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable component name",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": ["Card", "Hero", "Data Table"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Component purpose and usage description",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "version": {
+      "type": "string",
+      "description": "Component semantic version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0", "2.1.3"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Component lifecycle status",
+      "enum": ["draft", "stable", "deprecated", "removed"],
+      "default": "draft"
+    },
+    "category": {
+      "type": "string",
+      "description": "Component category for organization",
+      "enum": ["layout", "form", "data-display", "navigation", "feedback", "media", "other"],
+      "examples": ["layout", "form"]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags for searching and categorization",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "uniqueItems": true,
+      "examples": [["container", "responsive", "mvp"]]
+    },
+    "props": {
+      "type": "array",
+      "description": "Component properties (inputs)",
+      "items": {
+        "$ref": "#/$defs/componentProp"
+      }
+    },
+    "slots": {
+      "type": "array",
+      "description": "Component content slots (children)",
+      "items": {
+        "$ref": "#/$defs/componentSlot"
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Component events (outputs)",
+      "items": {
+        "$ref": "#/$defs/componentEvent"
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "description": "Rendering engine profiles with artifact references (OUCC-PROF-001: MAY declare zero or more)",
+      "items": {
+        "$ref": "#/$defs/renderingProfile"
+      }
+    },
+    "i18n": {
+      "type": "object",
+      "description": "Internationalization keys",
+      "properties": {
+        "keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "a11y": {
+      "type": "object",
+      "description": "Accessibility metadata",
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "ARIA role"
+        },
+        "attributes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "componentProp": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["string", "number", "boolean", "array", "object"]
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "description": {
+          "type": "string"
+        },
+        "default": {
+          "description": "Default value for optional props"
+        },
+        "enum": {
+          "type": "array",
+          "description": "Allowed values",
+          "minItems": 1
+        }
+      }
+    },
+    "componentSlot": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+        "accepts": {
+          "type": "array",
+          "description": "Component IDs or patterns that can be placed in this slot",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "componentEvent": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-zA-Z][a-zA-Z0-9_]*$"
+        },
+        "description": {
+          "type": "string"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Event payload schema"
+        }
+      }
+    },
+    "renderingProfile": {
+      "type": "object",
+      "required": ["engine", "artifact"],
+      "description": "A rendering engine profile with artifact reference (OUCC-PROF-002: Uniquely identified by component.id + version + engine)",
+      "properties": {
+        "engine": {
+          "type": "string",
+          "description": "Rendering engine identifier (OUCC-PROF-003: MUST be non-empty)",
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "minLength": 2,
+          "maxLength": 50,
+          "examples": ["templ", "thymeleaf", "mustache", "handlebars", "jinja2"]
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifact",
+          "description": "Reference to the rendering artifact (OUCC-ART-001: MUST be present)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["kind"],
+      "description": "Artifact reference with integrity verification",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Artifact type (OUCC-ART-002: MUST be one of the defined kinds)",
+          "enum": ["file"],
+          "examples": ["file"]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": { "const": "file" }
+            }
+          },
+          "then": {
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "description": "Relative file path from component package root (OUCC-ART-003: MUST be relative, OUCC-ART-005: MUST NOT escape package)",
+                "pattern": "^[^./][^/]*(/[^/]+)*$",
+                "minLength": 1,
+                "maxLength": 255,
+                "examples": ["templ/card.templ", "thymeleaf/hero.html", "mustache/button.mustache"]
+              },
+              "sha256": {
+                "type": "string",
+                "description": "SHA-256 hash of raw file bytes (OUCC-ART-004: lowercase hex, 64 chars, OUCC-HASH-002)",
+                "pattern": "^[a-f0-9]{64}$",
+                "examples": ["a1b2c3d4e5f6789abcdef0123456789abcdef0123456789abcdef0123456789"]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      ]
+    }
+  }
+}

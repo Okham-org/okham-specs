@@ -1,6 +1,0 @@
-{
-  "contract": "occ",
-  "version": "v1",
-  "status": "draft",
-  "schema": "./schema.json"
-}

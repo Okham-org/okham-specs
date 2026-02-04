@@ -1,8 +1,9 @@
-# Open Policy Contract (OPC) — Specification
-
-**Version**: 0.1.0
-**Status**: DRAFT
-**Last Updated**: 2026-01-16
+# OKHAM OPC — Open Policy Contract
+- Contract: OPC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/opc/0.1.0/schema.json
+- Last Updated: 2026-01-16
 
 ---
 

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/opc/0.1.0/policy.schema.json",
+  "title": "OPC Policy Definition",
+  "description": "DRAFT v0.0.1 schema for Open Policy Contract (OPC).",
+  "type": "object",
+  "required": ["policy", "id", "name", "version", "status", "scope", "condition", "decision"],
+  "properties": {
+    "policy": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OPC version (semantic version)."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]*[a-z0-9]$",
+      "description": "Policy identifier (unique, namespaced)."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Human-readable policy name."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Policy version."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated", "removed"],
+      "description": "Lifecycle status."
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["global", "service", "capability"],
+      "description": "Policy scope."
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "capability": { "type": "string" },
+        "function": { "type": "string" },
+        "interaction": { "type": "string" },
+        "event": { "type": "string" },
+        "operations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    },
+    "condition": {
+      "type": "object",
+      "required": ["expression", "inputs"],
+      "properties": {
+        "expression": { "type": "string" },
+        "inputs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "language": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "allow": { "$ref": "https://okham.org/schemas/opc/0.1.0/policy.schema.json#/$defs/outcome" },
+        "deny": { "$ref": "https://okham.org/schemas/opc/0.1.0/policy.schema.json#/$defs/outcome" },
+        "constrain": { "$ref": "https://okham.org/schemas/opc/0.1.0/policy.schema.json#/$defs/constrain" },
+        "warn": { "$ref": "https://okham.org/schemas/opc/0.1.0/policy.schema.json#/$defs/warn" }
+      },
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "outcome": {
+      "type": "object",
+      "properties": {
+        "message": { "type": "string" },
+        "log_level": { "type": "string" },
+        "code": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "constrain": {
+      "type": "object",
+      "required": ["constraints"],
+      "properties": {
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "message": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "warn": {
+      "type": "object",
+      "required": ["message"],
+      "properties": {
+        "message": { "type": "string" },
+        "log_level": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

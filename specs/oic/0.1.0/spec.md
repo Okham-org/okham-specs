@@ -1,8 +1,9 @@
-# Open Intent Contract (OIC) Specification
-
-**Version**: 0.1.0  
-**Status**: DRAFT  
-**Date**: 2026-01-19
+# OKHAM OIC — Open Intent Contract
+- Contract: OIC
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/oic/0.1.0/schema.json
+- Date: 2026-01-19
 
 ---
 

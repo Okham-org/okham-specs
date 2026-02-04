@@ -1,0 +1,394 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/otc/0.1.0/type.schema.json",
+  "title": "OTC Type Definition",
+  "description": "Schema for Open Type Contract type definitions.",
+  "type": "object",
+  "required": ["otc", "id", "name", "description", "fields"],
+  "properties": {
+    "otc": {
+      "type": "string",
+      "description": "OTC specification version",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique namespaced type identifier",
+      "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable type name",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "description": "Purpose description of the type",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "array",
+      "description": "Field definitions",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/field"
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Type version (semver)",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "description": "Stability status",
+      "enum": ["draft", "stable", "deprecated"]
+    },
+    "schema": {
+      "type": "object",
+      "description": "JSON Schema representation",
+      "additionalProperties": true
+    },
+    "extends": {
+      "type": "string",
+      "description": "Parent type ID to inherit from",
+      "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+    },
+    "mixins": {
+      "type": "array",
+      "description": "Mixin type IDs for composition",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+      }
+    },
+    "abstract": {
+      "type": "boolean",
+      "description": "If true, type cannot be instantiated directly",
+      "default": false
+    },
+    "deprecated": {
+      "type": "boolean",
+      "description": "If true, type is deprecated",
+      "default": false
+    },
+    "deprecatedReason": {
+      "type": "string",
+      "description": "Reason for deprecation"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Classification tags",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "additionalProperties": true
+    },
+    "implementations": {
+      "type": "array",
+      "description": "Language-specific bindings",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "examples": {
+      "type": "array",
+      "description": "Example values",
+      "items": {}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "field": {
+      "type": "object",
+      "required": ["name", "type", "meaning"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Field name in camelCase",
+          "pattern": "^[a-z][a-zA-Z0-9]*$"
+        },
+        "type": {
+          "type": "string",
+          "description": "Primitive type or type reference",
+          "oneOf": [
+            {
+              "enum": ["string", "integer", "number", "boolean", "array", "object", "null"]
+            },
+            {
+              "pattern": "^\\$ref:[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*\\.[a-z][a-z0-9-]*$"
+            }
+          ]
+        },
+        "meaning": {
+          "type": "string",
+          "description": "Semantic meaning tag",
+          "pattern": "^[a-z][a-z0-9]*\\.[a-zA-Z][a-zA-Z0-9]*$"
+        },
+        "description": {
+          "type": "string",
+          "description": "Field description"
+        },
+        "constraints": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/constraints"
+        },
+        "hints": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/hints"
+        },
+        "default": {
+          "description": "Default value for the field"
+        },
+        "examples": {
+          "type": "array",
+          "description": "Example values",
+          "items": {}
+        }
+      },
+      "additionalProperties": false
+    },
+    "constraints": {
+      "type": "object",
+      "description": "Validation constraints",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Field must be present"
+        },
+        "nullable": {
+          "type": "boolean",
+          "description": "Field may be null"
+        },
+        "minLength": {
+          "type": "integer",
+          "description": "Minimum string length",
+          "minimum": 0
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "Maximum string length",
+          "minimum": 0
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regex pattern for validation"
+        },
+        "format": {
+          "type": "string",
+          "description": "Format identifier",
+          "enum": [
+            "email", "uri", "url", "uuid", "date", "time", "date-time",
+            "duration", "ipv4", "ipv6", "hostname", "phone", "credit-card",
+            "iban", "bic"
+          ]
+        },
+        "minimum": {
+          "type": "number",
+          "description": "Minimum numeric value"
+        },
+        "maximum": {
+          "type": "number",
+          "description": "Maximum numeric value"
+        },
+        "exclusiveMinimum": {
+          "type": "number",
+          "description": "Exclusive minimum value"
+        },
+        "exclusiveMaximum": {
+          "type": "number",
+          "description": "Exclusive maximum value"
+        },
+        "multipleOf": {
+          "type": "number",
+          "description": "Value must be multiple of this",
+          "exclusiveMinimum": 0
+        },
+        "minItems": {
+          "type": "integer",
+          "description": "Minimum array length",
+          "minimum": 0
+        },
+        "maxItems": {
+          "type": "integer",
+          "description": "Maximum array length",
+          "minimum": 0
+        },
+        "uniqueItems": {
+          "type": "boolean",
+          "description": "Array items must be unique"
+        },
+        "enum": {
+          "type": "array",
+          "description": "Allowed values",
+          "minItems": 1
+        },
+        "const": {
+          "description": "Exact required value"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hints": {
+      "type": "object",
+      "description": "Non-normative hints for UI, i18n, a11y",
+      "properties": {
+        "ui": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/uiHints"
+        },
+        "i18n": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/i18nHints"
+        },
+        "a11y": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/a11yHints"
+        },
+        "privacy": {
+          "$ref": "https://okham.org/schemas/otc/0.1.0/type.schema.json#/$defs/privacyHints"
+        }
+      },
+      "additionalProperties": false
+    },
+    "uiHints": {
+      "type": "object",
+      "description": "UI presentation hints",
+      "properties": {
+        "inputType": {
+          "type": "string",
+          "description": "HTML input type",
+          "enum": [
+            "text", "email", "password", "number", "tel", "url",
+            "date", "time", "datetime-local", "color", "file",
+            "checkbox", "radio", "range", "hidden", "search"
+          ]
+        },
+        "autocomplete": {
+          "type": "string",
+          "description": "HTML autocomplete attribute"
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Placeholder text or i18n key"
+        },
+        "multiline": {
+          "type": "boolean",
+          "description": "Use multi-line input"
+        },
+        "rows": {
+          "type": "integer",
+          "description": "Rows for multiline input",
+          "minimum": 1
+        },
+        "masked": {
+          "type": "boolean",
+          "description": "Mask input characters"
+        },
+        "readonly": {
+          "type": "boolean",
+          "description": "Display as read-only"
+        },
+        "hidden": {
+          "type": "boolean",
+          "description": "Hide from UI"
+        },
+        "order": {
+          "type": "integer",
+          "description": "Display order"
+        },
+        "group": {
+          "type": "string",
+          "description": "Field grouping identifier"
+        },
+        "width": {
+          "type": "string",
+          "description": "Layout width hint",
+          "enum": ["full", "half", "third", "quarter", "auto"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "i18nHints": {
+      "type": "object",
+      "description": "Internationalization hints",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Label i18n key"
+        },
+        "placeholder": {
+          "type": "string",
+          "description": "Placeholder i18n key"
+        },
+        "help": {
+          "type": "string",
+          "description": "Help text i18n key"
+        },
+        "error": {
+          "type": "string",
+          "description": "Error message i18n key"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit label i18n key"
+        }
+      },
+      "additionalProperties": false
+    },
+    "a11yHints": {
+      "type": "object",
+      "description": "Accessibility hints",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Screen reader description i18n key"
+        },
+        "role": {
+          "type": "string",
+          "description": "ARIA role"
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Announce as required"
+        },
+        "invalid": {
+          "type": "boolean",
+          "description": "Announce as invalid"
+        },
+        "live": {
+          "type": "string",
+          "description": "ARIA live region type",
+          "enum": ["off", "polite", "assertive"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "privacyHints": {
+      "type": "object",
+      "description": "Privacy and sensitivity hints",
+      "properties": {
+        "sensitivity": {
+          "type": "string",
+          "description": "Data sensitivity level",
+          "enum": ["public", "internal", "pii", "secret"]
+        },
+        "retention": {
+          "type": "string",
+          "description": "Data retention policy",
+          "enum": ["none", "session", "persistent"]
+        },
+        "audit": {
+          "type": "boolean",
+          "description": "Include in audit logs"
+        },
+        "mask": {
+          "type": "boolean",
+          "description": "Mask in logs and displays"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,8 +1,9 @@
-# ODT — Open Design Tokens Specification
-
-**Version**: 0.1.0  
-**Status**: DRAFT  
-**Last Updated**: 2026-01-17
+# OKHAM ODT — Open Design Tokens
+- Contract: ODT
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/odt/0.1.0/schema.json
+- Last Updated: 2026-01-17
 
 ---
 

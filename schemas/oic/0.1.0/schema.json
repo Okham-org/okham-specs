@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oic/0.1.0/schema.json",
+  "title": "Open Intent Contract (OIC)",
+  "type": "object",
+  "additionalProperties": true
+}

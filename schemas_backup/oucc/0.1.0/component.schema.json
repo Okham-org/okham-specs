@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oucc/0.1.0/component.schema.json",
+  "title": "OUCC Component Definition",
+  "description": "DRAFT v0.1.0 schema for Open UI Component Contract (OUCC). TODO: tighten component-specific props/slots/events once specification stabilizes.",
+  "type": "object",
+  "required": ["component", "id", "name", "version"],
+  "properties": {
+    "component": {
+      "type": "string",
+      "description": "OUCC schema version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique component ID",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "description": "Component semantic version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Component description"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "stable", "deprecated", "removed"],
+      "description": "Lifecycle status"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["layout", "form", "data-display", "navigation", "feedback"],
+      "description": "Component category"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "props": {
+      "type": "array",
+      "description": "Component properties",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "slots": {
+      "type": "array",
+      "description": "Component slots",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "events": {
+      "type": "array",
+      "description": "Component events",
+      "items": { "type": "object", "additionalProperties": true }
+    },
+    "profiles": {
+      "type": "array",
+      "description": "Rendering profiles",
+      "items": { "$ref": "https://okham.org/schemas/oucc/0.1.0/component.schema.json#/$defs/profile" }
+    },
+    "i18n": {
+      "type": "object",
+      "description": "Internationalization metadata",
+      "additionalProperties": true
+    },
+    "a11y": {
+      "type": "object",
+      "description": "Accessibility metadata",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "profile": {
+      "type": "object",
+      "required": ["engine", "artifact"],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "description": "Rendering engine identifier",
+          "pattern": "^[a-z][a-z0-9_-]*$",
+          "minLength": 2,
+          "maxLength": 50
+        },
+        "artifact": {
+          "type": "object",
+          "description": "Rendering artifact reference",
+          "required": ["kind"],
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": ["file", "uri", "kv"]
+            },
+            "path": {
+              "type": "string",
+              "description": "Relative path for file artifacts"
+            },
+            "sha256": {
+              "type": "string",
+              "description": "SHA-256 checksum",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

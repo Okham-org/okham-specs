@@ -1,0 +1,10 @@
+{
+  "contract": "onc",
+  "version": "0.1.0",
+  "status": "draft",
+  "schema": "./schema.json",
+  "spec": "../../../specs/onc/0.1.0/spec.md",
+  "examples": [
+    "../../../examples/onc/0.1.0/HELPDESKV2_NAVIGATION.json"
+  ]
+}

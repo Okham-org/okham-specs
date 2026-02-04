@@ -1,7 +1,8 @@
-# OFR Specification
-
-> **Status**: Draft
-> **Version**: 0.1.0
+# OKHAM OFR — Open Function Registry
+- Contract: OFR
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/ofr/0.1.0/schema.json
 
 ## Abstract
 

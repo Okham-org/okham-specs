@@ -1,8 +1,9 @@
-# OMP — OKHAM MCP Profile Specification
-
-**Version**: 0.1.0  
-**Status**: DRAFT  
-**Last Updated**: 2026-01-16
+# OKHAM OMP — OKHAM MCP Profile
+- Contract: OMP
+- Version: 0.1.0
+- Status: Draft
+- Canonical Schema: https://okham.org/schemas/omp/0.1.0/schema.json
+- Last Updated: 2026-01-16
 
 ---
 
