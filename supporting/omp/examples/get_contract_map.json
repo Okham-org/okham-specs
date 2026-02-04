@@ -1,0 +1,27 @@
+{
+  "description": "Example response from get_contract_map tool",
+  "tool": "get_contract_map",
+  "input": {},
+  "output": {
+    "contracts": [
+      {
+        "acronym": "OTC",
+        "owns": ["Type definitions", "Semantic metadata", "Type composition"],
+        "does_not_own": ["Runtime type checking", "Serialization format", "Validation logic"],
+        "depends_on": []
+      },
+      {
+        "acronym": "OEC",
+        "owns": ["Event structure", "Causality chains", "Event classification"],
+        "does_not_own": ["Event transport", "Event storage", "Event processing logic"],
+        "depends_on": ["OTC"]
+      }
+    ],
+    "metadata": {
+      "source": "/foundation/CONTRACT-MAP.md",
+      "last_updated": "2026-01-16T12:00:00Z",
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

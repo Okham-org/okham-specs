@@ -1,0 +1,15 @@
+{
+  "description": "Example error response when requesting a non-existent contract",
+  "tool": "get_contract_doc",
+  "input": {
+    "contract": "XYZ",
+    "document": "SPECIFICATION",
+    "version": "0.1.0"
+  },
+  "output": {
+    "error": {
+      "code": "not_found",
+      "message": "Contract 'XYZ' does not exist"
+    }
+  }
+}

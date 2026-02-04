@@ -1,0 +1,25 @@
+{
+  "ovr": "0.1.0",
+  "run": {
+    "runId": "run-2026-01-17-003",
+    "timestamp": "2026-01-17T12:00:00Z",
+    "tool": "okham-lint",
+    "rulesets": ["okham.core.mvp"],
+    "target": "./docs"
+  },
+  "summary": {
+    "errors": 0,
+    "warnings": 1,
+    "infos": 0
+  },
+  "issues": [
+    {
+      "ruleId": "OUCC-REF-001",
+      "severity": "warn",
+      "message": "Component declares neither props nor slots",
+      "file": "docs/standards/oucc/examples/bad-component.yaml",
+      "jsonPointer": "/props",
+      "evidence": []
+    }
+  ]
+}

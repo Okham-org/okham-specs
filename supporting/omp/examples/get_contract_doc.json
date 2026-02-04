@@ -1,0 +1,24 @@
+{
+  "description": "Example response from get_contract_doc tool retrieving OTC SPECIFICATION",
+  "tool": "get_contract_doc",
+  "input": {
+    "contract": "OTC",
+    "document": "SPECIFICATION",
+    "version": "0.1.0"
+  },
+  "output": {
+    "contract": "OTC",
+    "document": "SPECIFICATION",
+    "version": "0.1.0",
+    "status": "DRAFT",
+    "content": "# OTC — Open Type Contract Specification\n\n**Version**: 0.1.0\n**Status**: DRAFT\n\n## Abstract\n\nThis document specifies the Open Type Contract (OTC), a foundational standard for defining canonical types with semantic meaning...\n\n## 1. Introduction\n\nOTC enables type interoperability across system boundaries by preserving both structure and semantics...",
+    "format": "markdown",
+    "metadata": {
+      "path": "/standards/otc/SPECIFICATION.md",
+      "last_updated": "2026-01-15T10:00:00Z",
+      "authoritative_source": "https://okham.org/standards/otc/SPECIFICATION.html",
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "description": "Example response from get_example tool",
+  "tool": "get_example",
+  "input": {
+    "contract": "OTC",
+    "example_id": "basic-type",
+    "version": "0.1.0"
+  },
+  "output": {
+    "contract": "OTC",
+    "version": "0.1.0",
+    "examples": [
+      {
+        "id": "basic-type",
+        "title": "Basic Type Definition",
+        "description": "A simple type with semantic metadata",
+        "artifact": {
+          "otc": "0.1.0",
+          "id": "okham.core.email",
+          "name": "Email",
+          "description": "Email address",
+          "fields": [
+            {
+              "name": "value",
+              "type": "string",
+              "meaning": "person.email"
+            }
+          ]
+        },
+        "validates_against": "https://okham.org/schema/otc/0.1.0/type.schema.json"
+      }
+    ],
+    "metadata": {
+      "path": "/standards/otc/EXAMPLES.md",
+      "last_updated": "2026-01-16T12:00:00Z",
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "description": "Example response from list_contracts tool",
+  "tool": "list_contracts",
+  "input": {},
+  "output": {
+    "contracts": [
+      {
+        "acronym": "OTC",
+        "name": "Open Type Contract",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "core",
+        "path": "/standards/otc/"
+      },
+      {
+        "acronym": "OEC",
+        "name": "Open Event Contract",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "core",
+        "path": "/standards/oec/"
+      },
+      {
+        "acronym": "OPC",
+        "name": "Open Policy Contract",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "core",
+        "path": "/standards/opc/"
+      },
+      {
+        "acronym": "OUCC",
+        "name": "Open UI Component Contract",
+        "version": "1.0.0",
+        "status": "DRAFT",
+        "category": "core",
+        "path": "/standards/oucc/"
+      },
+      {
+        "acronym": "OBC",
+        "name": "Open Business Contract",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "extension",
+        "path": "/standards/obc/"
+      },
+      {
+        "acronym": "OAC",
+        "name": "Open Accessibility Contract",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "extension",
+        "path": "/standards/oac/"
+      },
+      {
+        "acronym": "OCD",
+        "name": "Open Contract Document",
+        "version": "1.0.0",
+        "status": "DRAFT",
+        "category": "tooling",
+        "path": "/standards/ocd/"
+      },
+      {
+        "acronym": "OCC",
+        "name": "Open Capability Contract",
+        "version": "1.0.0",
+        "status": "STABLE",
+        "category": "tooling",
+        "path": "/standards/occ/"
+      },
+      {
+        "acronym": "ODT",
+        "name": "Open Design Tokens",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "tooling",
+        "path": "/standards/odt/"
+      },
+      {
+        "acronym": "OSR",
+        "name": "Open Snippet Registry",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "tooling",
+        "path": "/standards/osr/"
+      },
+      {
+        "acronym": "OVR",
+        "name": "Open Validation Report",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "tooling",
+        "path": "/standards/ovr/"
+      },
+      {
+        "acronym": "OLR",
+        "name": "Open Lint Ruleset",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "tooling",
+        "path": "/standards/ovr/"
+      },
+      {
+        "acronym": "OMP",
+        "name": "OKHAM MCP Profile",
+        "version": "0.1.0",
+        "status": "DRAFT",
+        "category": "supporting",
+        "path": "/supporting/omp/"
+      }
+    ],
+    "metadata": {
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

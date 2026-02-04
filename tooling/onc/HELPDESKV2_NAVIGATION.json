@@ -1,0 +1,60 @@
+{
+  "navigation": {
+    "id": "helpdeskv2.navigation",
+    "version": "0.2.0"
+  },
+  "screens": [
+    {
+      "id": "TicketList",
+      "title": "Tickets",
+      "componentRef": "helpdesk_ticket_list@0.1.0",
+      "intent": "analyze"
+    },
+    {
+      "id": "TicketDetail",
+      "title": "Ticket Detail",
+      "componentRef": "helpdesk_ticket_detail@0.1.0",
+      "intent": "decide"
+    },
+    {
+      "id": "IncidentDashboard",
+      "title": "Incidents",
+      "componentRef": "helpdesk_incident_dashboard@0.1.0",
+      "intent": "analyze"
+    },
+    {
+      "id": "ResolutionReview",
+      "title": "Resolution Review",
+      "componentRef": "helpdesk_resolution_review@0.1.0",
+      "intent": "verify"
+    },
+    {
+      "id": "KnowledgeBase",
+      "title": "Knowledge Base",
+      "componentRef": "helpdesk_knowledge_base@0.1.0",
+      "intent": "propose"
+    }
+  ],
+  "routes": [
+    { "path": "/", "screenId": "TicketList" },
+    { "path": "/tickets", "screenId": "TicketList" },
+    {
+      "path": "/tickets/:ticketId",
+      "screenId": "TicketDetail",
+      "params": [{ "name": "ticketId", "type": "helpdesk.ticket" }],
+      "guards": ["policy.ticket.close.requires-approval"]
+    },
+    { "path": "/incidents", "screenId": "IncidentDashboard" },
+    { "path": "/knowledge", "screenId": "KnowledgeBase" }
+  ],
+  "nav": {
+    "items": [
+      { "id": "nav.tickets", "label": "Tickets", "route": "/tickets" },
+      { "id": "nav.incidents", "label": "Incidents", "route": "/incidents" },
+      { "id": "nav.knowledge", "label": "Knowledge Base", "route": "/knowledge" }
+    ]
+  },
+  "guards": [
+    { "id": "policy.ticket.close.requires-approval", "policyRef": "policy.ticket.close.requires-approval" }
+  ]
+}

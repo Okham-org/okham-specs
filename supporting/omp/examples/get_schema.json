@@ -1,0 +1,23 @@
+{
+  "description": "Example response from get_schema tool",
+  "tool": "get_schema",
+  "input": {
+    "contract": "OTC",
+    "version": "0.1.0"
+  },
+  "output": {
+    "contract": "OTC",
+    "version": "0.1.0",
+    "schema": {
+      "$id": "https://okham.org/schema/otc/0.1.0/type.schema.json",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object"
+    },
+    "metadata": {
+      "schema_id": "https://okham.org/schema/otc/0.1.0/type.schema.json",
+      "last_updated": "2026-01-16T12:00:00Z",
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

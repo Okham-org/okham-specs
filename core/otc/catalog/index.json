@@ -1,0 +1,394 @@
+{
+  "types": [
+    {
+      "id": "okham.a11y.evidence",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.a11y.evidence.yaml",
+      "category": "a11y"
+    },
+    {
+      "id": "okham.a11y.obligation.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.a11y.obligation.ref.yaml",
+      "category": "a11y"
+    },
+    {
+      "id": "okham.a11y.report",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.a11y.report.yaml",
+      "category": "a11y"
+    },
+    {
+      "id": "okham.a11y.target",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.a11y.target.yaml",
+      "category": "a11y"
+    },
+    {
+      "id": "okham.actor",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.actor.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.artifact.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.artifact.ref.yaml",
+      "category": "artifact"
+    },
+    {
+      "id": "okham.auth.context",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.auth.context.yaml",
+      "category": "auth"
+    },
+    {
+      "id": "okham.bundle.manifest",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.bundle.manifest.yaml",
+      "category": "artifact"
+    },
+    {
+      "id": "okham.causation",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.causation.yaml",
+      "category": "trace"
+    },
+    {
+      "id": "okham.correlation",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.correlation.yaml",
+      "category": "trace"
+    },
+    {
+      "id": "okham.date",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.date.yaml",
+      "category": "time"
+    },
+    {
+      "id": "okham.datetime",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.datetime.yaml",
+      "category": "time"
+    },
+    {
+      "id": "okham.duration",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.duration.yaml",
+      "category": "time"
+    },
+    {
+      "id": "okham.error",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.error.yaml",
+      "category": "error"
+    },
+    {
+      "id": "okham.error.detail",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.error.detail.yaml",
+      "category": "error"
+    },
+    {
+      "id": "okham.event.classification",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.classification.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.event.envelope",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.envelope.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.event.id",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.id.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.event.meta",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.meta.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.event.producer",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.producer.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.event.severity",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.event.severity.yaml",
+      "category": "event"
+    },
+    {
+      "id": "okham.filter",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.filter.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.id",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.id.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.list.meta",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.list.meta.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.locale",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.locale.yaml",
+      "category": "locale"
+    },
+    {
+      "id": "okham.money",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.money.yaml",
+      "category": "finance"
+    },
+    {
+      "id": "okham.operation",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.operation.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.package.meta",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.package.meta.yaml",
+      "category": "artifact"
+    },
+    {
+      "id": "okham.page.info",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.page.info.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.pagination",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.pagination.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.permission",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.permission.yaml",
+      "category": "auth"
+    },
+    {
+      "id": "okham.policy.constraint",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.policy.constraint.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.policy.decision",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.policy.decision.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.policy.evidence",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.policy.evidence.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.policy.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.policy.ref.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.policy.target",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.policy.target.yaml",
+      "category": "policy"
+    },
+    {
+      "id": "okham.query",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.query.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.registry.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.registry.ref.yaml",
+      "category": "artifact"
+    },
+    {
+      "id": "okham.request.context",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.request.context.yaml",
+      "category": "meta"
+    },
+    {
+      "id": "okham.request.meta",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.request.meta.yaml",
+      "category": "meta"
+    },
+    {
+      "id": "okham.resource.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.resource.ref.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.response.context",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.response.context.yaml",
+      "category": "meta"
+    },
+    {
+      "id": "okham.response.meta",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.response.meta.yaml",
+      "category": "meta"
+    },
+    {
+      "id": "okham.result",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.result.yaml",
+      "category": "error"
+    },
+    {
+      "id": "okham.role",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.role.yaml",
+      "category": "auth"
+    },
+    {
+      "id": "okham.service.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.service.ref.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.slug",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.slug.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.sort",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.sort.yaml",
+      "category": "query"
+    },
+    {
+      "id": "okham.status",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.status.yaml",
+      "category": "status"
+    },
+    {
+      "id": "okham.timezone",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.timezone.yaml",
+      "category": "time"
+    },
+    {
+      "id": "okham.trace",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.trace.yaml",
+      "category": "trace"
+    },
+    {
+      "id": "okham.trace.span",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.trace.span.yaml",
+      "category": "trace"
+    },
+    {
+      "id": "okham.ui.action",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.action.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.ui.feedback",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.feedback.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.ui.form.field",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.form.field.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.ui.form.state",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.form.state.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.ui.intent",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.intent.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.ui.notification",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.ui.notification.yaml",
+      "category": "ui"
+    },
+    {
+      "id": "okham.uri",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.uri.yaml",
+      "category": "core"
+    },
+    {
+      "id": "okham.user.ref",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.user.ref.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.uuid",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.uuid.yaml",
+      "category": "identity"
+    },
+    {
+      "id": "okham.validation.issue",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.validation.issue.yaml",
+      "category": "validation"
+    },
+    {
+      "id": "okham.validation.report",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.validation.report.yaml",
+      "category": "validation"
+    },
+    {
+      "id": "okham.version.semver",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.version.semver.yaml",
+      "category": "version"
+    },
+    {
+      "id": "okham.warning",
+      "version": "1.0.0",
+      "path": "docs/standards/otc/catalog/core/okham.warning.yaml",
+      "category": "error"
+    }
+  ]
+}

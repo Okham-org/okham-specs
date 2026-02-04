@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schema/ovr/0.1.0/schema.json",
+  "title": "Open Validation Report (OVR)",
+  "type": "object",
+  "required": ["ovr", "run", "summary", "issues"],
+  "properties": {
+    "ovr": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "run": {
+      "type": "object",
+      "required": ["runId", "timestamp", "tool", "rulesets", "target"],
+      "properties": {
+        "runId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "tool": { "type": "string" },
+        "rulesets": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" }
+        },
+        "target": { "type": "string" },
+        "baseline": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "required": ["errors", "warnings", "infos"],
+      "properties": {
+        "errors": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "infos": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "issues": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/issue" }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "issue": {
+      "type": "object",
+      "required": ["ruleId", "severity", "message", "file", "jsonPointer", "evidence"],
+      "properties": {
+        "ruleId": { "type": "string" },
+        "severity": { "type": "string", "enum": ["error", "warn", "info"] },
+        "message": { "type": "string" },
+        "file": { "type": "string" },
+        "jsonPointer": { "type": "string" },
+        "line": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 1 },
+        "evidence": {},
+        "suggestedFix": { "type": "string" },
+        "source": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

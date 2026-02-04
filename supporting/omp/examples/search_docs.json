@@ -1,0 +1,26 @@
+{
+  "description": "Example response from search_docs tool",
+  "tool": "search_docs",
+  "input": {
+    "query": "semantic meaning",
+    "contracts": ["OTC"],
+    "document_types": ["SPECIFICATION"]
+  },
+  "output": {
+    "results": [
+      {
+        "contract": "OTC",
+        "document": "SPECIFICATION",
+        "version": "0.1.0",
+        "excerpt": "OTC preserves semantic meaning across system boundaries by defining canonical types...",
+        "relevance_score": 0.92,
+        "path": "/standards/otc/SPECIFICATION.md#introduction"
+      }
+    ],
+    "metadata": {
+      "query": "semantic meaning",
+      "total_results": 1,
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}

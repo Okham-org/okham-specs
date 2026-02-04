@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schema/opc/0.1.0/schema.json",
+  "title": "Open Policy Contract (OPC)",
+  "description": "Schema for OKHAM Open Policy Contract v0.1.0",
+  "type": "object",
+  "required": ["policy", "id", "name", "version", "status", "scope", "condition", "decision"],
+  "properties": {
+    "policy": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "OPC version (semantic version)"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9._-]*[a-z0-9]$",
+      "description": "Policy identifier (unique, namespaced, lowercase with dot separators)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Human-readable policy name"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Policy version (semantic version)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "deprecated", "removed"],
+      "description": "Policy lifecycle status"
+    },
+    "scope": {
+      "type": "string",
+      "enum": ["global", "service", "capability"],
+      "description": "Policy scope"
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "capability": {
+          "type": "string",
+          "description": "OCC capability ID this policy applies to"
+        },
+        "function": {
+          "type": "string",
+          "description": "OFC function ID this policy applies to"
+        },
+        "interaction": {
+          "type": "string",
+          "description": "OIC interaction ID this policy applies to"
+        },
+        "event": {
+          "type": "string",
+          "description": "OEC event ID this policy applies to"
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of operations (e.g., read, write, delete)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "condition": {
+      "type": "object",
+      "required": ["expression", "inputs"],
+      "properties": {
+        "expression": {
+          "type": "string",
+          "description": "Declarative boolean expression"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "List of required input variables"
+        },
+        "language": {
+          "type": "string",
+          "default": "cel",
+          "description": "Expression language (default: cel)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "decision": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "allow": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Human-readable allow reason"
+            },
+            "log_level": {
+              "type": "string",
+              "enum": ["debug", "info"],
+              "description": "Logging severity"
+            }
+          },
+          "additionalProperties": false
+        },
+        "deny": {
+          "type": "object",
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Human-readable deny reason"
+            },
+            "log_level": {
+              "type": "string",
+              "enum": ["warn", "error"],
+              "description": "Logging severity"
+            },
+            "code": {
+              "type": "string",
+              "description": "Error code for client response"
+            }
+          },
+          "additionalProperties": false
+        },
+        "constrain": {
+          "type": "object",
+          "required": ["constraints"],
+          "properties": {
+            "constraints": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "description": "List of constraint expressions"
+            },
+            "message": {
+              "type": "string",
+              "description": "Human-readable constraint reason"
+            }
+          },
+          "additionalProperties": false
+        },
+        "warn": {
+          "type": "object",
+          "required": ["message"],
+          "properties": {
+            "message": {
+              "type": "string",
+              "description": "Warning message"
+            },
+            "log_level": {
+              "type": "string",
+              "enum": ["warn"],
+              "default": "warn",
+              "description": "Logging severity"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional custom metadata (free-form key-value pairs)",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

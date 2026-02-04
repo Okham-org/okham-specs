@@ -1,0 +1,19 @@
+{
+  "description": "Example response from resolve_term tool",
+  "tool": "resolve_term",
+  "input": {
+    "term": "capability"
+  },
+  "output": {
+    "term": "capability",
+    "definition": "A discrete unit of functionality that can be invoked, composed, and governed. Capabilities are declaratively defined contracts that specify inputs, outputs, policies, and lifecycle hooks.",
+    "related_contracts": ["OCC"],
+    "aliases": ["cap"],
+    "metadata": {
+      "source": "/foundation/GLOSSARY.md",
+      "last_updated": "2026-01-15T10:00:00Z",
+      "omp_version": "0.1.0",
+      "timestamp": "2026-01-16T12:00:00Z"
+    }
+  }
+}
