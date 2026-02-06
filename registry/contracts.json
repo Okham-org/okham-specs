@@ -125,6 +125,13 @@
         "0.1.0"
       ],
       "status": "draft"
+    },
+    {
+      "id": "oas",
+      "versions": [
+        "0.1.0"
+      ],
+      "status": "draft"
     }
   ]
 }

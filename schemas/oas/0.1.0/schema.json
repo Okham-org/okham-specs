@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oas/0.1.0/schema.json",
+  "title": "OAS Assertion Definition",
+  "description": "Open Assertion Spec (OAS) defines portable, versioned assertion primitives referenced by OLR rulesets and used by tools that emit OVR.",
+  "type": "object",
+  "required": ["oas", "assertionId", "version", "description", "paramsSchema"],
+  "properties": {
+    "oas": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "OAS contract version (SemVer)."
+    },
+    "assertionId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Globally unique assertion identifier (namespaced). Example: okham.core.required_field"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Assertion version (SemVer)."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the assertion."
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Normative description of what the assertion checks."
+    },
+    "olr": {
+      "type": "object",
+      "description": "How this assertion is referenced from OLR.",
+      "required": ["assert"],
+      "properties": {
+        "assert": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The OLR rule.assert opcode string corresponding to this assertion (e.g., required_field)."
+        },
+        "params": {
+          "type": "object",
+          "description": "Optional documentation-only default parameters.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "paramsSchema": {
+      "$ref": "https://json-schema.org/draft/2020-12/schema",
+      "description": "JSON Schema describing the shape of OLR rule.params when rule.assert matches this assertion."
+    },
+    "ovr": {
+      "type": "object",
+      "description": "Guidance for producing OVR issues for this assertion.",
+      "properties": {
+        "jsonPointerRule": {
+          "type": "string",
+          "description": "Normative guidance for what jsonPointer should point to (e.g., the failing path)."
+        },
+        "evidenceRule": {
+          "type": "string",
+          "description": "Normative guidance for what evidence should contain."
+        }
+      },
+      "additionalProperties": false
+    },
+    "examples": {
+      "type": "array",
+      "description": "Non-normative examples.",
+      "items": {
+        "type": "object",
+        "required": ["rule"],
+        "properties": {
+          "title": { "type": "string" },
+          "rule": {
+            "type": "object",
+            "description": "Example OLR rule fragment.",
+            "additionalProperties": true
+          },
+          "expectedIssue": {
+            "type": "object",
+            "description": "Example OVR issue fragment.",
+            "additionalProperties": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

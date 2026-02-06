@@ -1,0 +1,7 @@
+{
+  "contract": "oas",
+  "version": "0.1.0",
+  "status": "draft",
+  "schema": "schema.json",
+  "spec": "../../../specs/oas/0.1.0/spec.md"
+}

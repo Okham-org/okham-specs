@@ -67,5 +67,9 @@
   "olr": {
     "latest": "0.1.0",
     "stable": null
+  },
+  "oas": {
+    "latest": "0.1.0",
+    "stable": null
   }
 }
