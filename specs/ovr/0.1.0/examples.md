@@ -14,7 +14,7 @@
     "runId": "run-2026-01-17-001",
     "timestamp": "2026-01-17T10:12:30Z",
     "tool": "okham-lint",
-    "rulesets": ["okham.core.mvp"],
+    "rulesets": [{"rulesetId":"okham.core.mvp","version":"0.1.0"}],
     "target": "./docs"
   },
   "summary": {
@@ -49,7 +49,10 @@
     "runId": "run-2026-01-17-002",
     "timestamp": "2026-01-17T10:15:40Z",
     "tool": "okham-lint",
-    "rulesets": ["okham.core.mvp", "okham.core.semantic"],
+    "rulesets": [
+      {"rulesetId":"okham.core.mvp","version":"0.1.0"},
+      {"rulesetId":"okham.core.semantic","version":"0.1.0"}
+    ],
     "target": "./docs",
     "baseline": "./baseline"
   },

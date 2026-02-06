@@ -36,7 +36,7 @@ The `run` object MUST include:
 - `runId` (REQUIRED): Unique identifier for this run
 - `timestamp` (REQUIRED): ISO 8601 timestamp in UTC
 - `tool` (REQUIRED): Tool identifier (e.g., `okham-lint`)
-- `rulesets` (REQUIRED): Array of ruleset IDs applied
+- `rulesets` (REQUIRED): Array of applied ruleset references (`rulesetId` + `version`)
 - `target` (REQUIRED): Target path used for linting
 - `baseline` (OPTIONAL): Baseline path when compatibility checks are applied
 
@@ -92,7 +92,11 @@ OVR reports MUST be deterministic for the same inputs. Tools SHOULD sort `issues
 
 ## 6. Ruleset Definition Status
 
-The OLR ruleset structure is intentionally left undefined in v0.0.1. This is not an error or omission. It will be specified in a future version once ruleset semantics stabilize.
+OVR reports reference external rulesets.
+
+- In OVR `run.rulesets[]`, each entry MUST include `rulesetId` and `version`.
+- The ruleset format is specified by OLR.
+  - Canonical OLR schema: `https://okham.org/schemas/olr/0.1.0/schema.json`
 
 ---
 

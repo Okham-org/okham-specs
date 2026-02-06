@@ -8,8 +8,8 @@
 
 ## Canonical Schemas
 
-- OVR report schema: https://okham.org/schemas/ovr-olr/0.1.0/report.schema.json
-- OLR ruleset schema: https://okham.org/schemas/ovr-olr/0.1.0/ruleset.schema.json
+- OVR report schema: https://okham.org/schemas/ovr/0.1.0/schema.json
+- OLR ruleset schema: https://okham.org/schemas/olr/0.1.0/schema.json
 
 ## Field Overview (OVR Report)
 
@@ -28,7 +28,7 @@
     "runId": "run-123",
     "timestamp": "2026-01-17T10:30:00Z",
     "tool": "okham-lint",
-    "rulesets": ["okham.core.mvp"],
+    "rulesets": [{"rulesetId":"okham.core.mvp","version":"0.1.0"}],
     "target": "docs/"
   },
   "summary": {
