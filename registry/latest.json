@@ -3,7 +3,10 @@
     "latest": "0.1.0",
     "stable": null
   },
-  "oap": "0.1.0",
+  "oap": {
+    "latest": "0.1.0",
+    "stable": null
+  },
   "obc": {
     "latest": "0.1.0",
     "stable": null
