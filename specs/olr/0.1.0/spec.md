@@ -29,7 +29,8 @@ Each rule MUST declare:
 - `severity` (REQUIRED): one of `error`, `warn`, `info`.
 - `scope` (REQUIRED): logical domain identifier (e.g., `global`, `otc`, `oec`, `oucc`, `okham-app`).
 - `selector` (REQUIRED): file/document selection constraints.
-- `assert` (REQUIRED): assertion kind identifier.
+- `assert` (REQUIRED): assertion opcode/kind identifier.
+- `assertionRef` (OPTIONAL): reference to an OAS assertion definition (`assertionId` + `version`).
 - `params` (REQUIRED): object of assertion parameters.
 - `message` (REQUIRED): human-facing error message.
 
@@ -48,11 +49,20 @@ A selector MAY include:
 
 - `documentKind`: tool-defined document kind discriminator.
 
-## 4. Assertion kinds
+## 4. Assertion kinds and OAS
 
-`assert` is a string interpreted by the executing tool (e.g., `required_field`, `pattern_match`, `ref_exists`).
+`assert` is a string executed by the tool (e.g., `required_field`, `pattern_match`, `ref_exists`).
 
-OLR does not standardize assertion semantics in v0.1.0. Tools MUST:
+If `assertionRef` is present, it MUST point to an OAS assertion definition (`assertionId` + `version`) that defines:
+
+- the normative semantics
+- the expected `params` shape (`paramsSchema`)
+
+Tools MAY validate `params` against the referenced OAS `paramsSchema`.
+
+If `assertionRef` is absent, assertion semantics remain tool-defined.
+
+Tools MUST:
 
 - treat unknown `assert` kinds as unsupported
 - report unsupported-rule execution as OVR issues with a tool-defined rule id or an `info` entry

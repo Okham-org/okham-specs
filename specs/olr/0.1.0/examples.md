@@ -13,6 +13,9 @@ rules:
     selector:
       globs: ["**/*.{yaml,yml,json}"]
     assert: required_field
+    assertionRef:
+      assertionId: okham.core.required_field
+      version: 0.1.0
     params:
       path: "/id"
     message: Document must declare id

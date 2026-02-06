@@ -56,7 +56,11 @@
         "assert": {
           "type": "string",
           "minLength": 1,
-          "description": "Assertion kind (tool-defined)."
+          "description": "Assertion opcode/kind executed by tools (e.g., required_field)."
+        },
+        "assertionRef": {
+          "$ref": "#/$defs/assertionRef",
+          "description": "Optional reference to an OAS assertion definition (assertionId + version) that defines semantics and paramsSchema for this rule.assert."
         },
         "params": {
           "type": "object",
@@ -76,6 +80,35 @@
           "type": "array",
           "items": { "type": "string" },
           "description": "Optional tags for grouping/UX."
+        }
+      },
+      "additionalProperties": false
+    },
+    "assertionRef": {
+      "type": "object",
+      "required": ["assertionId", "version"],
+      "properties": {
+        "assertionId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "OAS assertion id (namespaced). Example: okham.core.required_field"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "OAS assertion version (SemVer)."
+        },
+        "source": {
+          "type": "string",
+          "description": "Optional source hint (e.g., okham-catalog)."
+        },
+        "path": {
+          "type": "string",
+          "description": "Optional relative path/locator to the assertion definition artifact."
+        },
+        "schema": {
+          "type": "string",
+          "description": "Optional schema url for the assertion definition (e.g., https://okham.org/schemas/oas/0.1.0/schema.json)."
         }
       },
       "additionalProperties": false
