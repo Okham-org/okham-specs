@@ -50,32 +50,32 @@ The public OKHAM domain is the canonical distribution point.
 
 ```
 schemas/<contract>/<version>/schema.json
-schemas/<contract>/<version>/contract.json
+schemas/<contract>/<version>/manifest.json
 specs/<contract>/<version>/spec.md
 examples/<contract>/<version>/*
 registry/contracts.json
 registry/latest.json
 ```
 
-### `schema.json` vs `contract.json`
+### `schema.json` vs `manifest.json`
 
 Within `schemas/<contract>/<version>/` we publish two different JSON files:
 
 - `schema.json` (**normative**) — the canonical **JSON Schema** for the contract/version.
   Use this for deterministic validation (tooling, CI, compatibility checks).
-- `contract.json` (**descriptor / discovery**) — a small **manifest** that describes the published contract artifact and links to its canonical pieces:
+- `manifest.json` (**descriptor / discovery**) — a small **manifest** that describes the published contract artifact and links to its canonical pieces:
   - contract id + version + status
   - relative pointers to `schema.json`, the spec (`spec.md`), and example files
 
 **When to use which**
 
 - If you want to validate data: use `schema.json`.
-- If you want to discover “what exists” (and where the canonical files are): use `contract.json` (or the top-level `registry/`).
+- If you want to discover “what exists” (and where the canonical files are): use `manifest.json` (or the top-level `registry/`).
 
 **Normativity**
 
 - The semantics and structure are defined by `specs/` + `schemas/` (normative).
-- `contract.json` is **not** a substitute for the spec/schema; it is a **descriptor** used by tooling and distribution.
+- `manifest.json` is **not** a substitute for the spec/schema; it is a **descriptor** used by tooling and distribution.
   Treat its metadata and pointers as **authoritative for what is published**, but not as the normative definition of the contract itself.
 
 ### Directory intent
