@@ -87,6 +87,16 @@ Within `schemas/<contract>/<version>/` we publish two different JSON files:
 
 ---
 
+## OAP: OKHAM Application Package
+
+OAP defines the **application-level manifest** for an OKHAM app package.
+
+- Schema: `https://okham.org/schemas/oap/0.1.0/schema.json`
+- Spec (repo): `specs/oap/0.1.0/spec.md`
+- Expected file in a package: `manifest/app.json`
+
+---
+
 ## Versioning and status
 
 Each contract version declares a status:

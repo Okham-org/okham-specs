@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/oap/0.1.0/schema.json",
+  "title": "OAP Application Package Manifest",
+  "description": "OKHAM Application Package (OAP) manifest: app-level metadata + namespace used by contract ids.",
+  "type": "object",
+  "required": ["id", "version", "name", "namespace"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Application identifier (package id)."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Manifest version (semver)."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable application name."
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short summary (1-2 lines)."
+    },
+    "namespace": {
+      "type": "string",
+      "description": "Stable namespace prefix used by all contract ids in this app package (e.g. app.okham.todo)."
+    },
+    "goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Informative: product goals."
+    },
+    "non_goals": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Informative: explicit non-goals/boundaries."
+    },
+    "actors": {
+      "type": "array",
+      "description": "Informative: actors/roles in the app domain.",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Informative notes. Runtime/infra concerns belong in bindings/ or deploy/."
+    }
+  },
+  "additionalProperties": true
+}

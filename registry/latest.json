@@ -3,15 +3,16 @@
     "latest": "0.1.0",
     "stable": null
   },
+  "oap": "0.1.0",
   "obc": {
     "latest": "0.1.0",
     "stable": null
   },
-  "ocd": {
+  "occ": {
     "latest": "0.1.0",
     "stable": null
   },
-  "occ": {
+  "ocd": {
     "latest": "0.1.0",
     "stable": null
   },
