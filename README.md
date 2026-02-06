@@ -120,4 +120,5 @@ Breaking changes are only allowed in:
 
 ## License
 
-See `LICENSE`.
+Licensed under the Apache License 2.0.
+See `LICENSE` and `NOTICE`.
