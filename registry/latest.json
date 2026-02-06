@@ -63,5 +63,9 @@
   "ovr": {
     "latest": "0.1.0",
     "stable": null
+  },
+  "olr": {
+    "latest": "0.1.0",
+    "stable": null
   }
 }

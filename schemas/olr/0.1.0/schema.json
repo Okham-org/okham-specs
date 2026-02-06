@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/olr/0.1.0/schema.json",
+  "title": "OLR Ruleset Definition",
+  "description": "Open Linting Ruleset (OLR) defines a portable ruleset format for linting/verification tools.",
+  "type": "object",
+  "required": ["rulesetId", "version", "rules"],
+  "properties": {
+    "rulesetId": {
+      "type": "string",
+      "description": "Globally unique ruleset identifier (namespaced).",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Ruleset version (SemVer)."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the ruleset."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional ruleset metadata (tooling may ignore unknown keys).",
+      "additionalProperties": true
+    },
+    "rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/rule" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "required": ["ruleId", "severity", "scope", "selector", "assert", "params", "message"],
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Rule identifier unique within the ruleset."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["error", "warn", "info"],
+          "description": "Rule severity level."
+        },
+        "scope": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Logical scope/domain for the rule (e.g., global, otc, oec, opc, oucc, okham-app)."
+        },
+        "selector": { "$ref": "#/$defs/selector" },
+        "assert": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Assertion kind (tool-defined)."
+        },
+        "params": {
+          "type": "object",
+          "description": "Assertion parameters (shape depends on assert).",
+          "additionalProperties": true
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Human-readable failure message."
+        },
+        "suggestedFix": {
+          "type": "string",
+          "description": "Non-executable suggestion for remediation."
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional tags for grouping/UX."
+        }
+      },
+      "additionalProperties": false
+    },
+    "selector": {
+      "type": "object",
+      "required": ["globs"],
+      "properties": {
+        "globs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "File glob patterns this rule applies to."
+        },
+        "documentKind": {
+          "type": "string",
+          "description": "Optional artifact/document kind constraint (tool-defined)."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
