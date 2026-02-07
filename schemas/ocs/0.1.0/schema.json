@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://okham.org/schemas/ocs/0.1.0/schema.json",
+  "title": "OCS — Open Conformance Suite",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ocs", "suiteId", "target", "cases"],
+  "properties": {
+    "ocs": {
+      "type": "string",
+      "description": "OCS contract version (semver)",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "suiteId": {
+      "type": "string",
+      "description": "Unique namespaced identifier for this suite (recommended: okham.*)",
+      "minLength": 3
+    },
+    "status": {
+      "type": "string",
+      "description": "Suite maturity status",
+      "enum": ["draft", "stable", "deprecated"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what this suite validates"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "id", "version"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "description": "Target contract artifact kind",
+          "enum": ["olr.ruleset", "oas.assertion", "schema"]
+        },
+        "id": {
+          "type": "string",
+          "description": "Identifier of the target artifact (e.g., okham.otc.base)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Target artifact version (semver)",
+          "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+        }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/case" }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Arbitrary metadata for tooling",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "expect"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "description": "Relative file path to the test input"
+        },
+        "expect": {
+          "type": "string",
+          "enum": ["pass", "fail"],
+          "description": "Whether the input must pass or fail"
+        },
+        "expectRuleIds": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Rule IDs expected to appear in the findings (for fail cases)"
+        },
+        "minFindings": { "type": "integer", "minimum": 0 },
+        "maxFindings": { "type": "integer", "minimum": 0 }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "expect": { "const": "fail" } } },
+          "then": { "required": ["expectRuleIds"] }
+        }
+      ]
+    }
+  }
+}

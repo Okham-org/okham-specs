@@ -74,5 +74,9 @@
   "oas": {
     "latest": "0.1.0",
     "stable": null
+  },
+  "ocs": {
+    "latest": "0.1.0",
+    "stable": null
   }
 }
